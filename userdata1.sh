@@ -1,24 +1,31 @@
 #!/bin/bash
-apt update
-apt install -y apache2
 
-# Get the instance ID using the instance metadata
+# Update system
+yum update -y
+
+# Install Apache (httpd)
+yum install -y httpd
+
+# Start and enable Apache
+systemctl start httpd
+systemctl enable httpd
+
+# Get instance metadata
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
 
-# Install the AWS CLI
-apt install -y awscli
+# Install AWS CLI (optional but safe)
+yum install -y awscli
 
-# Download the images from S3 bucket
-#aws s3 cp s3://myterraformprojectbucket2023/project.webp /var/www/html/project.png --acl public-read
+# (Optional) Download image from S3
+# aws s3 cp s3://myterraformprojectbucket2023/project.webp /var/www/html/project.png
 
-# Create a simple HTML file with the portfolio content and display the images
+# Create HTML page
 cat <<EOF > /var/www/html/index.html
 <!DOCTYPE html>
 <html>
 <head>
   <title>My Portfolio</title>
   <style>
-    /* Add animation and styling for the text */
     @keyframes colorChange {
       0% { color: red; }
       50% { color: green; }
@@ -30,10 +37,9 @@ cat <<EOF > /var/www/html/index.html
   </style>
 </head>
 <body>
-  <h1>Terraform Project Server 2</h1>
+  <h1>Terraform Project Server 2 with second EC2 instance</h1>
   <h2>Instance ID: <span style="color:green">$INSTANCE_ID</span></h2>
-  <p>Welcome to all my lovely students</p>
-
+  <p>Welcome to Mounika's Terraform Project Demo</p>
 </body>
 </html>
 EOF
