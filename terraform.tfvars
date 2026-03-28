@@ -9,7 +9,7 @@ availability_zone2 = "us-east-2b"
 name = "web-sg"
 
 instance_type = "t3.micro"
-ami_id = "ami-0b0b78dcacbab728f"
+ami_id = "ami-04f2ba315f7ebb999"
 
 bucket_name = "terraform-s3-test-project-1991"
 
