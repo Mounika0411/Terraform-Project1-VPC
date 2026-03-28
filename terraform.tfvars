@@ -11,7 +11,7 @@ name = "web-sg"
 instance_type = "t3.micro"
 ami_id = "ami-04f2ba315f7ebb999"
 
-bucket_name = "terraform-s3-test-project-1991"
+bucket_name = "terraform-s3-test-project-2024"
 
 alb_name = "webMyALB"
 
